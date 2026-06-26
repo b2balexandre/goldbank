@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldBank App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #06163a;
+            --navy-2: #071b49;
+            --navy-3: #0a235d;
+            --gold: #d7b868;
+            --gold-light: #ffe792;
+            --gold-dark: #9a7433;
+            --line: rgba(232, 199, 122, 0.76);
+            --text-gold: #e8c77a;
+            --shadow: rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            padding: 22px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(216, 184, 104, 0.24), transparent 32%),
+                linear-gradient(145deg, #020817 0%, #061638 48%, #020817 100%);
+            color: var(--text-gold);
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        .app-shell {
+            width: min(100%, 430px);
+            aspect-ratio: 706 / 1536;
+            min-height: 760px;
+            max-height: calc(100vh - 44px);
+            position: relative;
+            overflow: hidden;
+            border-radius: 48px;
+            background:
+                radial-gradient(circle at 70% 24%, rgba(20, 58, 131, 0.34), transparent 32%),
+                linear-gradient(180deg, #071744 0%, #051334 65%, #061944 100%);
+            border: 4px solid rgba(13, 39, 91, 0.95);
+            box-shadow:
+                0 24px 70px var(--shadow),
+                inset 0 0 0 1px rgba(225, 198, 121, 0.12),
+                inset 0 0 28px rgba(14, 48, 113, 0.75);
+        }
+
+        .app-screen {
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            gap: 16px;
+            padding: 30px 24px 0;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035), transparent 10%, transparent 90%, rgba(255, 255, 255, 0.025)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 22%);
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            font-size: 1.32rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+        }
+
+        .status-left,
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tiny-icon {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .battery {
+            width: 33px;
+            height: 18px;
+            border: 3px solid currentColor;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .battery::before {
+            content: "";
+            position: absolute;
+            inset: 3px 5px 3px 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--gold-light), var(--gold));
+        }
+
+        .battery::after {
+            content: "";
+            position: absolute;
+            right: -7px;
+            top: 4px;
+            width: 4px;
+            height: 7px;
+            border-radius: 0 4px 4px 0;
+            background: currentColor;
+        }
+
+        .brand-head {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 0 6px;
+        }
+
+        .brand-center {
+            display: grid;
+            justify-items: center;
+            gap: 8px;
+            transform: translateX(8px);
+        }
+
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.48));
+        }
+
+        .brand-title {
+            font-size: 1.24rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            white-space: nowrap;
+            color: var(--gold);
+            text-shadow:
+                0 2px 0 rgba(80, 54, 12, 0.55),
+                0 0 18px rgba(229, 194, 111, 0.15);
+        }
+
+        .profile {
+            display: grid;
+            justify-items: center;
+            align-self: end;
+            gap: 6px;
+            min-width: 76px;
+            margin-bottom: -4px;
+            color: var(--gold);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 2px solid rgba(235, 206, 137, 0.8);
+            object-fit: cover;
+            background: #ead8bc;
+        }
+
+        .main-area {
+            display: grid;
+            align-content: start;
+            gap: 18px;
+            min-height: 0;
+        }
+
+        .panel {
+            border: 2.5px solid var(--line);
+            border-radius: 22px;
+            background: rgba(5, 19, 55, 0.42);
+            box-shadow:
+                inset 0 0 18px rgba(0, 0, 0, 0.16),
+                0 12px 22px rgba(0, 0, 0, 0.14);
+        }
+
+        .account-card {
+            padding: 20px 22px;
+        }
+
+        .panel-title {
+            font-size: 1.43rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-shadow: 0 2px 0 rgba(76, 49, 14, 0.55);
+        }
+
+        .balance-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 132px;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .balance {
+            display: grid;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        .amount {
+            color: var(--gold-light);
+            font-size: 1.94rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.075em;
+            white-space: nowrap;
+            text-shadow:
+                0 2px 0 rgba(92, 58, 15, 0.55),
+                0 0 18px rgba(255, 231, 146, 0.18);
+        }
+
+        .limit {
+            display: grid;
+            gap: 6px;
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+        }
+
+        .limit strong {
+            color: var(--gold-light);
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .credit-card {
+            width: 100%;
+            justify-self: end;
+            aspect-ratio: 1.62;
+            border-radius: 10px;
+            padding: 10px;
+            display: grid;
+            align-content: space-between;
+            overflow: hidden;
+            color: #f5d989;
+            background:
+                radial-gradient(circle at 100% 10%, rgba(255, 209, 106, 0.86), transparent 18%),
+                radial-gradient(circle at 92% 52%, rgba(232, 127, 31, 0.7), transparent 30%),
+                linear-gradient(125deg, #2a1608 0%, #4c2711 42%, #111832 100%);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+            position: relative;
+        }
+
+        .credit-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(70deg, transparent 40%, rgba(255, 235, 171, 0.26) 47%, transparent 58%),
+                radial-gradient(ellipse at 100% 50%, rgba(255, 238, 175, 0.6), transparent 23%);
+            opacity: 0.9;
+        }
+
+        .card-bank,
+        .card-number,
+        .card-name {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-bank {
+            font-size: 0.55rem;
+            font-weight: 900;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+
+        .chip {
+            width: 24px;
+            height: 18px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #f2c777, #a66b24);
+            position: relative;
+            z-index: 1;
+        }
+
+        .chip::before,
+        .chip::after {
+            content: "";
+            position: absolute;
+            inset: 50% 0 auto;
+            height: 1px;
+            background: rgba(63, 38, 10, 0.45);
+        }
+
+        .chip::after {
+            inset: 0 50% 0 auto;
+            width: 1px;
+            height: auto;
+        }
+
+        .card-number {
+            font-size: 0.51rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .card-name {
+            font-size: 0.38rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .action {
+            display: grid;
+            justify-items: center;
+            gap: 10px;
+            color: var(--gold);
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.05rem;
+            line-height: 0.98;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 0 rgba(60, 39, 12, 0.55);
+        }
+
+        .action-icon {
+            width: 72px;
+            height: 72px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #07183c;
+            background:
+                linear-gradient(90deg, rgba(118, 81, 20, 0.26), transparent 22%, rgba(255, 255, 255, 0.42) 50%, transparent 78%, rgba(100, 65, 16, 0.25)),
+                radial-gradient(circle at 32% 24%, #fff2a3, #dfbd61 52%, #a97a2d 100%);
+            border: 1px solid rgba(79, 52, 19, 0.32);
+            box-shadow:
+                inset 0 4px 12px rgba(255, 255, 255, 0.38),
+                inset 0 -5px 12px rgba(82, 48, 12, 0.28),
+                0 8px 18px rgba(0, 0, 0, 0.28);
+        }
+
+        .action-icon svg {
+            width: 50%;
+            height: 50%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .sales-panel {
+            min-height: 224px;
+            padding: 20px 22px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+
+        .sales-head {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .chart-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--gold);
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .sales-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: end;
+            justify-items: center;
+            gap: 34px;
+            padding: 8px 12px 0;
+        }
+
+        .sale-link {
+            display: grid;
+            justify-items: center;
+            gap: 12px;
+            color: var(--gold);
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.28rem;
+            line-height: 1.08;
+            font-weight: 800;
+            letter-spacing: -0.06em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 0 rgba(60, 39, 12, 0.55);
+        }
+
+        .sale-link svg {
+            width: 76px;
+            height: 76px;
+            color: var(--gold);
+            fill: rgba(232, 199, 122, 0.28);
+            stroke: currentColor;
+            stroke-width: 2.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.45));
+        }
+
+        .bottom-nav {
+            height: 94px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            margin: 0 -24px;
+            padding: 6px 24px 10px;
+            background: linear-gradient(180deg, rgba(8, 28, 75, 0.96), rgba(5, 19, 55, 1));
+            position: relative;
+        }
+
+        .bottom-nav::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 28%;
+            height: 4px;
+            background: var(--gold);
+            box-shadow: 0 0 12px rgba(232, 199, 122, 0.35);
+        }
+
+        .nav-item {
+            display: grid;
+            justify-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.08rem;
+            line-height: 1;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.06em;
+            text-shadow: 0 2px 0 rgba(60, 39, 12, 0.55);
+            position: relative;
+        }
+
+        .nav-item.help::before {
+            content: "";
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            width: 58px;
+            height: 38px;
+            transform: translateX(-50%);
+            background: rgba(140, 156, 190, 0.54);
+            clip-path: polygon(50% 0, 61% 32%, 100% 32%, 69% 52%, 80% 100%, 50% 72%, 20% 100%, 31% 52%, 0 32%, 39% 32%);
+        }
+
+        .nav-item svg {
+            width: 40px;
+            height: 40px;
+            fill: currentColor;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.38));
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 0;
+                background: var(--navy);
+            }
+
+            .app-shell {
+                width: 100vw;
+                min-height: 100vh;
+                max-height: none;
+                border-radius: 0;
+                border: 0;
+            }
+
+            .brand-center {
+                transform: translateX(14px);
+            }
+
+            .account-card {
+                padding-inline: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .app-screen {
+                padding-inline: 18px;
+            }
+
+            .actions {
+                gap: 10px;
+            }
+
+            .brand-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="app-shell" aria-label="Aplicativo GoldBank">
+        <div class="app-screen">
+            <section class="status-bar" aria-label="Barra de status">
+                <div class="status-left">
+                    <span>07:14</span>
+                    <svg class="tiny-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m4 4 16 16M9 5.2A8.5 8.5 0 0 1 20 13m-4 0a4.5 4.5 0 0 0-5.4-4.4M7 9.8A8.7 8.7 0 0 0 4 13"/>
+                    </svg>
+                </div>
+                <div class="status-icons" aria-hidden="true">
+                    <svg class="tiny-icon" viewBox="0 0 24 24">
+                        <path d="M5 20v-4m5 4v-8m5 8V8m5 12V4"/>
+                    </svg>
+                    <svg class="tiny-icon" viewBox="0 0 24 24">
+                        <path d="M4.5 9.5a12 12 0 0 1 15 0M7.8 13a7 7 0 0 1 8.4 0M11 16.5a2 2 0 0 1 2 0"/>
+                    </svg>
+                    <span class="battery"></span>
+                </div>
+            </section>
+
+            <header class="brand-head">
+                <div class="brand-center">
+                    <img class="brand-logo" src="../assets/images/iv/Logo.png" alt="GoldBank">
+                    <h1 class="brand-title">GOLDBANK - CARTÕES S/A</h1>
+                </div>
+                <div class="profile">
+                    <img class="avatar" src="../assets/images/icons/f1a7e623-0c3f-47fb-ac8d-a5be2da65d5d.jpg" alt="Ricardo S.">
+                    <span>Ricardo S.</span>
+                </div>
+            </header>
+
+            <section class="main-area">
+                <article class="panel account-card" aria-label="Resumo da minha conta">
+                    <h2 class="panel-title">Resumo da Minha Conta</h2>
+                    <div class="balance-row">
+                        <div class="balance">
+                            <strong class="amount">R$ 15.420,50</strong>
+                            <p class="limit">
+                                Meu limite disponível:
+                                <strong>R$ 5.800,00</strong>
+                            </p>
+                        </div>
+                        <div class="credit-card" aria-label="Cartão GoldBank Africa">
+                            <div class="card-bank">GoldBank<br>Africa</div>
+                            <div class="chip"></div>
+                            <div class="card-number">5678 9102 3HSB</div>
+                            <div class="card-name">Otávio Augusto Vidigal</div>
+                        </div>
+                    </div>
+                </article>
+
+                <nav class="actions" aria-label="Ações da conta">
+                    <a class="action" href="#pix">
+                        <span class="action-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path d="M24 7 38 21a4 4 0 0 1 0 6L27 38a4 4 0 0 1-6 0L10 27a4 4 0 0 1 0-6L24 7Z"/>
+                                <path d="M10 24h9l5-5 5 5h9M19 24l5 5 5-5"/>
+                            </svg>
+                        </span>
+                        <span>Fazer<br>Pix</span>
+                    </a>
+                    <a class="action" href="#boleto">
+                        <span class="action-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path d="M11 10v28M17 10v28M24 10v28M31 10v28M37 10v28"/>
+                                <path d="M14 10v28M27 10v28M40 10v28"/>
+                            </svg>
+                        </span>
+                        <span>Pagar<br>Boleto</span>
+                    </a>
+                    <a class="action" href="#receber">
+                        <span class="action-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path d="M24 8v32M34 15c-2-4-18-5-18 4 0 9 19 3 19 13 0 8-17 8-21 2"/>
+                            </svg>
+                        </span>
+                        <span>Receber</span>
+                    </a>
+                    <a class="action" href="#extrato">
+                        <span class="action-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path d="M14 7h14l8 8v26H14Z"/>
+                                <path d="M28 7v10h8M19 24h12M19 31h9M32 33l4 4 5-7"/>
+                            </svg>
+                        </span>
+                        <span>Ver<br>Extrato</span>
+                    </a>
+                </nav>
+
+                <article class="panel sales-panel" aria-label="Minhas vendas">
+                    <div class="sales-head">
+                        <h2 class="panel-title">Minhas Vendas</h2>
+                        <svg class="chart-icon" viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M8 38V25m10 13V18m10 20V27m10 11V11"/>
+                            <path d="M8 24 18 15l10 8 10-14"/>
+                            <circle cx="8" cy="24" r="2"/>
+                            <circle cx="18" cy="15" r="2"/>
+                            <circle cx="28" cy="23" r="2"/>
+                            <circle cx="38" cy="9" r="2"/>
+                        </svg>
+                    </div>
+                    <div class="sales-actions">
+                        <a class="sale-link" href="#maquininha">
+                            <svg viewBox="0 0 64 64" aria-hidden="true">
+                                <path d="M20 19h22a5 5 0 0 1 5 5v28a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5V24a5 5 0 0 1 5-5Z"/>
+                                <path d="M25 8h22v14H25zM47 26h5v23h-5"/>
+                                <path d="M22 30h18M22 38h5M32 38h5M22 46h5M32 46h5M22 53h5M32 53h5M30 13h11"/>
+                            </svg>
+                            <span>Vendas na<br>Maquininha</span>
+                        </a>
+                        <a class="sale-link" href="#adiantar">
+                            <svg viewBox="0 0 64 64" aria-hidden="true">
+                                <path d="M15 50c0-12 8-20 17-20s17 8 17 20Z"/>
+                                <path d="M23 22c4 5 14 5 18 0l-5 10H28Z"/>
+                                <path d="M32 35v17M39 40c-1-3-14-4-14 2 0 7 15 2 15 9"/>
+                                <path d="M48 12v39M39 21l9-9 9 9"/>
+                            </svg>
+                            <span>Adiantar<br>Dinheiro</span>
+                        </a>
+                    </div>
+                </article>
+            </section>
+
+            <nav class="bottom-nav" aria-label="Navegação do aplicativo">
+                <a class="nav-item" href="#inicio">
+                    <svg viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M8 24 24 10l16 14v17H29V29H19v12H8Z"/>
+                    </svg>
+                    <span>Início</span>
+                </a>
+                <a class="nav-item" href="#produtos">
+                    <svg viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="m24 5 16 9v20l-16 9-16-9V14Z" fill="none"/>
+                        <path d="m8 14 16 9 16-9M24 23v20M16 9l16 9"/>
+                    </svg>
+                    <span>Meus Produtos</span>
+                </a>
+                <a class="nav-item help" href="#ajuda">
+                    <svg viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M10 39 13 29a16 16 0 1 1 7 7Z" fill="none"/>
+                        <path d="M21 19a5 5 0 0 1 9 3c0 4-5 4-5 8M25 36h.01"/>
+                    </svg>
+                    <span>Ajuda</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>

@@ -2,9 +2,9 @@
 *{margin:0;padding:0;box-sizing:border-box}
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 :root{
---petrol:#081423;
---petrol-light:#0d1f35;
---petrol-dark:#050d15;
+--petrol:#04132a;
+--petrol-light:#04132a;
+--petrol-dark:#04132a;
 --gold:#D4AF37;
 --gold-light:#E5C158;
 --gold-dark:#B8952F;
@@ -19,7 +19,7 @@
 --ease-smooth:cubic-bezier(0.4, 0, 0.2, 1);
 --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
 --ease-bounce:cubic-bezier(0.68, -0.55, 0.265, 1.55);
---glass-bg:rgba(8, 20, 35, 0.6);
+--glass-bg:rgba(4, 19, 42, 0.6);
 --glass-border:rgba(212, 175, 55, 0.15);
 --shadow-soft:0 8px 32px rgba(0, 0, 0, 0.3);
 --shadow-gold:0 8px 32px rgba(212, 175, 55, 0.15);
@@ -71,7 +71,7 @@ position:relative;
 
 header{
 position:fixed;top:0;left:0;right:0;z-index:999;
-background:linear-gradient(180deg, rgba(8,20,35,0.7) 0%, rgba(8,20,35,0.5) 100%);
+background:linear-gradient(180deg, rgba(4,19,42,0.7) 0%, rgba(4,19,42,0.5) 100%);
 backdrop-filter:blur(20px) saturate(180%);
 -webkit-backdrop-filter:blur(20px) saturate(180%);
 border-bottom:1px solid var(--glass-border);
@@ -226,9 +226,9 @@ opacity:0.6;
     background:
     radial-gradient(
         circle,
-        rgba(8,20,35,.95) 0%,
-        rgba(8,20,35,.8) 35%,
-        rgba(8,20,35,.5) 60%,
+        rgba(4,19,42,.95) 0%,
+        rgba(4,19,42,.8) 35%,
+        rgba(4,19,42,.5) 60%,
         transparent 100%
     );
 
@@ -255,7 +255,7 @@ z-index:5;
 .ambient-glow{
 position:absolute;
 inset:-30px;
-background:radial-gradient(ellipse at center, rgba(212,175,55,0.3) 0%, rgba(8,20,35,0.2) 40%, transparent 70%);
+background:radial-gradient(ellipse at center, rgba(212,175,55,0.3) 0%, rgba(4,19,42,0.2) 40%, transparent 70%);
 filter:blur(100px);
 z-index:-1;
 animation:glowPulse 4s ease-in-out infinite;
@@ -438,7 +438,7 @@ right:10px;
 width:40px;
 height:40px;
 border-radius:8px;
-background:rgba(8,20,35,0.8);
+background:rgba(4,19,42,0.8);
 border:1px solid rgba(212,175,55,0.4);
 color:var(--gold);
 font-size:18px;
@@ -563,7 +563,7 @@ gap:12px;
 padding:16px 32px;
 border-radius:50px;
 border:1px solid rgba(212,175,55,0.12);
-background:rgba(8,20,35,0.5);
+background:rgba(4,19,42,0.5);
 backdrop-filter:blur(15px);
 color:var(--gold);
 margin-bottom:36px;
@@ -609,7 +609,7 @@ opacity:1;
 border-color:var(--gold);
 box-shadow:0 12px 35px rgba(212,175,55,0.3);
 transform:translateY(-2px) scale(1.02);
-background:rgba(8,20,35,0.8);
+background:rgba(4,19,42,0.8);
 }
 
 .hero h2{
@@ -713,7 +713,7 @@ box-shadow:var(--shadow-soft);
 }
 
 .btn-outline:hover{
-background:rgba(8,20,35,0.8);
+background:rgba(4,19,42,0.8);
 border-color:var(--gold);
 color:var(--gold-light);
 transform:translateY(-3px) scale(1.01);
@@ -1010,7 +1010,7 @@ left:50%;
 transform:translate(-50%, -50%) rotateY(-5deg) rotateX(5deg);
 width:320px;
 padding:40px;
-background:linear-gradient(135deg, rgba(13,31,53,0.95) 0%, rgba(8,20,35,0.98) 100%);
+background:linear-gradient(135deg, rgba(13,31,53,0.95) 0%, rgba(4,19,42,0.98) 100%);
 border:1px solid rgba(212,175,55,0.2);
 border-radius:24px;
 backdrop-filter:blur(20px);
@@ -1093,7 +1093,7 @@ margin-bottom:120px;
 .feature-block{
 position:relative;
 padding:40px 32px;
-background:linear-gradient(135deg, rgba(13,31,53,0.6) 0%, rgba(8,20,35,0.8) 100%);
+background:linear-gradient(135deg, rgba(13,31,53,0.6) 0%, rgba(4,19,42,0.8) 100%);
 border:1px solid rgba(212,175,55,0.1);
 border-radius:24px;
 backdrop-filter:blur(10px);
@@ -2028,7 +2028,7 @@ perspective:1000px;
 .phone-glow{
 position:absolute;
 inset:-40px;
-background:radial-gradient(ellipse at center, rgba(212,175,55,0.35) 0%, rgba(8,20,35,0.2) 40%, transparent 70%);
+background:radial-gradient(ellipse at center, rgba(212,175,55,0.35) 0%, rgba(4,19,42,0.2) 40%, transparent 70%);
 filter:blur(80px);
 z-index:-1;
 animation:glowPulse 4s ease-in-out infinite;
@@ -2084,7 +2084,7 @@ align-items:center;
 gap:18px;
 min-height:128px;
 padding:22px;
-background:linear-gradient(135deg, rgba(13,31,53,0.6) 0%, rgba(8,20,35,0.8) 100%);
+background:linear-gradient(135deg, rgba(13,31,53,0.6) 0%, rgba(4,19,42,0.8) 100%);
 border:1px solid rgba(212,175,55,0.12);
 border-radius:8px;
 transition:all 0.5s var(--ease-premium);
@@ -2271,7 +2271,7 @@ transform:translateX(3px);
 .phone-frame{
 width:100%;
 height:100%;
-background:linear-gradient(145deg, rgba(13,31,53,0.95) 0%, rgba(8,20,35,0.98) 100%);
+background:linear-gradient(145deg, rgba(13,31,53,0.95) 0%, rgba(4,19,42,0.98) 100%);
 border-radius:45px;
 border:2px solid var(--glass-border);
 box-shadow:
@@ -3100,3 +3100,312 @@ nav a:hover::after{width:100%}
 .card-mini{transition:all 0.3s ease}
 .card-mini:hover{transform:scale(1.02);box-shadow:0 10px 30px rgba(212,175,55,0.4)}
 .hero-content{position:relative;z-index:1}
+
+/* GoldBank app visual system */
+:root{
+--navy:#06163a;
+--navy-2:#071b49;
+--navy-3:#0a235d;
+--ink:#020817;
+--gold:#d7b868;
+--gold-light:#ffe792;
+--gold-dark:#9a7433;
+--text:#f7f2df;
+--text-muted:rgba(247,242,223,0.72);
+--text-dim:rgba(247,242,223,0.52);
+--petrol:#06163a;
+--petrol-light:#d7b868;
+--petrol-dark:#020817;
+--bg:
+linear-gradient(180deg, #071744 0%, #051334 48%, #020817 100%);
+--gold-metallic:
+linear-gradient(90deg, rgba(118,81,20,0.26), transparent 22%, rgba(255,255,255,0.42) 50%, transparent 78%, rgba(100,65,16,0.25)),
+radial-gradient(circle at 32% 24%, #fff2a3, #dfbd61 52%, #a97a2d 100%);
+--glass-bg:rgba(5,19,55,0.62);
+--glass-border:rgba(232,199,122,0.38);
+--shadow-soft:0 14px 34px rgba(0,0,0,0.24);
+--shadow-gold:0 10px 24px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+html{
+cursor:auto;
+}
+
+body{
+background:
+radial-gradient(circle at 50% 0%, rgba(216,184,104,0.14), transparent 30%),
+linear-gradient(145deg, #020817 0%, #061638 48%, #020817 100%);
+color:var(--text);
+font-family:var(--font-modern);
+}
+
+header{
+background:rgba(5,19,55,0.94);
+border-bottom:1px solid rgba(232,199,122,0.24);
+box-shadow:0 10px 32px rgba(0,0,0,0.28);
+}
+
+.topo{
+padding:12px 0;
+}
+
+.logo img{
+width:156px;
+}
+
+nav a{
+color:var(--gold);
+font-weight:700;
+letter-spacing:0.04em;
+text-shadow:none;
+}
+
+nav a:hover{
+color:var(--gold-light);
+text-shadow:none;
+}
+
+.hero,
+.goldtoken,
+.about,
+.videos-section,
+.app-section,
+.coins-section,
+.institutional-section{
+background:
+linear-gradient(90deg, rgba(255,255,255,0.025), transparent 12%, transparent 88%, rgba(255,255,255,0.018)),
+radial-gradient(circle at 70% 18%, rgba(10,35,93,0.34), transparent 30%),
+linear-gradient(180deg, #071744 0%, #051334 62%, #020817 100%);
+position:relative;
+}
+
+.hero{
+min-height:min(800px, 86vh);
+padding:90px 0 42px;
+}
+
+.hero-bg-image,
+.app-background,
+.about::before{
+display:none;
+}
+
+.hero::before,
+.hero::after,
+.about::after,
+.app-section::before,
+.institutional-section::before{
+animation:none;
+opacity:1;
+background:
+radial-gradient(circle at 18% 18%, rgba(216,184,104,0.08), transparent 28%),
+radial-gradient(circle at 78% 76%, rgba(216,184,104,0.05), transparent 32%);
+}
+
+.gold-circle,
+.floating-element,
+.visual-orb,
+.ambient-glow{
+display:none;
+}
+
+.hero-left::before{
+background:linear-gradient(90deg, rgba(2,8,23,0.9), rgba(2,8,23,0.54), transparent);
+filter:blur(46px);
+}
+
+.hero-badge,
+.app-badge,
+.badge,
+.about-badge{
+border-radius:8px;
+background:rgba(5,19,55,0.72);
+border:1px solid rgba(232,199,122,0.42);
+box-shadow:inset 0 0 18px rgba(0,0,0,0.14);
+color:var(--gold);
+letter-spacing:0.14em;
+text-transform:uppercase;
+animation:none;
+}
+
+.hero h2,
+.about-content h2,
+.goldtoken h2,
+.videos-header h2,
+.app-section h2,
+.institutional-header h2,
+.triangle-section h3{
+color:var(--gold-light);
+font-family:var(--font-premium);
+text-shadow:0 2px 0 rgba(76,49,14,0.35), 0 0 18px rgba(229,194,111,0.12);
+letter-spacing:0;
+}
+
+.hero h2 span,
+.about-content h2 .line-2{
+color:var(--text);
+-webkit-text-fill-color:initial;
+background:none;
+}
+
+.about-content h2 .line-3{
+background:none;
+-webkit-text-fill-color:initial;
+color:var(--gold);
+animation:none;
+}
+
+.hero p,
+.about-description,
+.goldtoken p,
+.videos-header p,
+.app-section p,
+.institutional-header p,
+.triangle-intro{
+color:var(--text-muted);
+text-shadow:none;
+}
+
+.btn,
+.btn-primary{
+border-radius:8px;
+background:var(--gold-metallic);
+border:1px solid rgba(79,52,19,0.32);
+color:#07183c;
+box-shadow:var(--shadow-gold);
+animation:none;
+}
+
+.btn-outline,
+.btn-secondary{
+border-radius:8px;
+background:rgba(5,19,55,0.74);
+border:1px solid rgba(232,199,122,0.42);
+color:var(--gold);
+box-shadow:var(--shadow-soft);
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-outline:hover,
+.btn-secondary:hover{
+transform:translateY(-2px);
+box-shadow:0 14px 30px rgba(0,0,0,0.28);
+}
+
+.video-bento-card,
+.carousel-video-card,
+.about-stats,
+.visual-card,
+.about-feature-card,
+.about-ceo,
+.institutional-card,
+.activity-item,
+.triangle-card,
+.token-card,
+.video-card,
+.transaction,
+.feature-card,
+.balance-card,
+.gtk-token-card,
+.footer-trust,
+.footer-column{
+border-radius:8px;
+background:rgba(5,19,55,0.62);
+border:1px solid rgba(232,199,122,0.34);
+box-shadow:0 12px 26px rgba(0,0,0,0.20), inset 0 0 18px rgba(0,0,0,0.10);
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+}
+
+.video-bento-card:hover,
+.institutional-card:hover,
+.triangle-card:hover,
+.token-card:hover,
+.video-card:hover,
+.transaction:hover,
+.feature-card:hover{
+background:rgba(8,28,75,0.82);
+border-color:rgba(255,231,146,0.62);
+box-shadow:0 18px 34px rgba(0,0,0,0.28);
+filter:none;
+transform:translateY(-4px);
+}
+
+.carousel-item.carousel-center .carousel-video-card,
+.carousel-item:hover .carousel-video-card{
+border:1px solid rgba(232,199,122,0.34);
+}
+
+.carousel-video-card{
+overflow:hidden;
+}
+
+.carousel-video{
+border-radius:8px;
+}
+
+@media(min-width:1001px){
+.carousel-video-card{
+height:min(500px, 64vh);
+}
+
+.carousel-item.carousel-center{
+max-width:250px;
+}
+}
+
+.token-icon img,
+.triangle-icon img,
+.card-icon img{
+filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.triangle-card p,
+.token-card p,
+.video-info p,
+.activity-desc,
+.feature-text span{
+color:var(--text-muted);
+}
+
+.triangle-section h3,
+.goldtoken h2,
+.goldtoken p,
+.triangle-intro{
+color:var(--text-muted);
+}
+
+.goldtoken h2,
+.triangle-section h3{
+color:var(--gold-light);
+}
+
+.coins-section{
+min-height:360px;
+}
+
+.site-footer{
+background:linear-gradient(180deg, #051334 0%, #020817 100%);
+border-top:1px solid rgba(232,199,122,0.24);
+}
+
+@media(max-width:768px){
+.hero{
+min-height:auto;
+padding:44px 0 54px;
+}
+
+.goldtoken-header,
+.videos-header,
+.app-left{
+border-radius:8px;
+background:rgba(5,19,55,0.62);
+border:1px solid rgba(232,199,122,0.34);
+}
+
+.token-grid,
+.videos-grid{
+grid-template-columns:1fr;
+}
+}
