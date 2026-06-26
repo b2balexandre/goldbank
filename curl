@@ -1,0 +1,3 @@
+    PID  TTY        STIME COMMAND
+   2205 cons0    17:18:24 /usr/bin/PS
+   2042 cons0    17:18:16 /usr/bin/bash
